@@ -25,6 +25,9 @@ SECRET_KEY = 'django-insecure-nc94jf01zf$08438cqvd*go9@i15bb8r7_a40xb*+rk&9x1@g^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+OIDC_ENABLED = True
+AUTH_USER_MODEL = 'userlogin.User'
+
 ALLOWED_HOSTS = []
 
 
@@ -51,6 +54,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'oauth2_provider.backends.OAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 ROOT_URLCONF = 'backend.urls'
 
